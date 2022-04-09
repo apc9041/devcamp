@@ -1,3 +1,4 @@
+debugger
 function draw(n) {
     text = '';
     for (let i=0; i<1; i++ ) {

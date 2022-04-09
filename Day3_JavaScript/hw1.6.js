@@ -12,3 +12,5 @@ function draw(n) {
     console.log(text);
 }
 draw(2)
+draw(3)
+draw(4)

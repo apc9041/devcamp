@@ -1,14 +1,15 @@
 debugger
 function draw(n) {
     text = '';
-    let a=1;
     for (let i=1; i<=n; i++ ) {
         for (let j=1; j<=n; j++) {
-            text += a;
-            a += i;
+            if (i===j) {
+                text += '-';
+            } else {
+                text += '*';
+            }
         }
         text += '\n';
-        a = i+1
     }
     console.log(text);
 }
