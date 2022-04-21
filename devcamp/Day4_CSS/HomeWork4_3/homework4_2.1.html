@@ -1,0 +1,35 @@
+<head>
+    <style>
+        .default {
+            background-color: rgb(255, 255, 255);
+            height: 100px;
+        }
+        @media (min-width: 576px) {}
+        @media (min-width: 768px) {}
+        @media (min-width: 992px) {
+            .largeScreen {background-color: rgb(255, 255, 255);}
+            .mobileOnly {display: none;}
+        }
+        @media (min-width: 1200px) {}
+    </style>
+</head>
+
+<body>
+    <div class="mobileOnly">
+        คุณกำลังใช้ Website ผ่านโทรศัพท์มือถือ
+    </div>
+    <div class="container green">
+        <div class="default largeScreen">
+        <div class="row justify-content-center blue h100">
+
+            <div class="col-auto"><img src="https://picsum.photos/200/300?grayscale" width="400px" height="400px" padding="2px"/></div>
+            <div class="col-auto">
+                    <img src="https://picsum.photos/200/300.jpg" width="200px" height="200px" />
+                    <img src="https://picsum.photos/seed/picsum/200/300" width="200px" height="200px" />
+                    
+            </div>
+            <div><h2>Home - Lorem ipsum</h2>
+                <p>What is Lorem Ipsum? Simply put, loremipsum is dummy text that occupies the space where the real content should be. If you are designing an online business such as a blog and you do not have</p>
+                </div>
+    </div>
+</body>

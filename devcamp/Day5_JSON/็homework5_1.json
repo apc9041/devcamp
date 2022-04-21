@@ -1,0 +1,50 @@
+[
+    {
+        "id": "01",
+        "fistname": "Apichart",
+        "lastname": "Saelu",
+        "age": "35",
+        "gender": "male",
+        "address": {
+            "sub_district": "chalong",
+            "district": "phuketcity",
+            "province": "phuket"
+        },
+            "contact": {
+            "mobile": "0888888888",
+            "email" : "apc@gmail.com"
+        }
+    },
+    {
+        "id": "01",
+        "fistname": "Paiboon",
+        "lastname": "Panusbordee",
+        "age": "35",
+        "gender": "male",
+        "address": {
+            "sub_district": "Mahasawasd",
+            "district": "Bangkrew",
+            "province": "Nonthaburi"
+        },
+        "contact": {
+            "mobile": "0999999999",
+            "email" : "paiboonpa@thaiprogrammer.org"
+        }
+    },
+    {
+        "id": "01",
+        "fistname": "Peter",
+        "lastname": "Parker",
+        "age": "17",
+        "gender": "male",
+        "address": {
+            "sub_district": "Chrystie Street",
+            "district": "Manhattan",
+            "email" : "New York"
+        },
+        "contact": {
+            "mobile": "0999999999",
+            "email":"spiderman@marvel.com"
+        }
+    }
+]

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Color</title>
+ 
+    <style>
+        .flex-container {
+            flex-wrap: wrap;
+            display: flex;
+            background: brown;
+            flex-direction: row;
+            width: 800px;
+            height: 600px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .item {
+            background: pink;
+            padding: 20px;
+            margin: 20px;
+        }
+        .default {
+            background-color: yellow;
+            height: 100px;
+        }
+        @media (min-width: 576px) {}
+        @media (min-width: 768px) {}
+        @media (min-width: 992px) {
+            .largeScreen {background-color: pink;}
+            .mobileOnly {display: none;}
+        }
+        @media (min-width: 1200px) {}
+    </style>
+</head>
+
+<body>
+
+    <div class="flex-container">
+        <div class="item">Item1</div>
+        <div class="item">Item2</div>
+        <div class="item">Item3</div>
+    </div>
+    <div class="mobileOnly">
+        คุณกำลังใช้ Website ผ่านโทรศัพท์มือถือ
+    </div>
+    <div class="default largeScreen">Content</div>
+</body>
+
+
+</html>

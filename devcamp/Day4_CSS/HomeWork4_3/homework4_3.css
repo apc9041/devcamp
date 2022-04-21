@@ -1,0 +1,16 @@
+.red {background-color: red;}
+.blue {background-color: blue;}
+.yellow {background-color: yellow;}
+.green {background-color: green;}
+.brown {background-color: brown;}
+.gray {background-color: rgb(97, 96, 96);}
+.DarkGray {background-color: rgb(32, 31, 31);}
+.BrightGray {background-color: rgb(153, 151, 151);}
+.sky {background-color: rgb(58, 189, 250);}
+.h30 {height: 30px;}
+.h50 {height: 50px;}
+.h100 {height: 100px;}
+.h400 {height: 400px;}
+p {
+    color: antiquewhite;
+}
