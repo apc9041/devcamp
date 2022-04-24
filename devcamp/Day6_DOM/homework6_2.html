@@ -21,6 +21,8 @@
 
   <body>
     <div id="display"></div>
+
+    <!-- modal -->
     <div
       class="modal fade"
       id="exampleModal"
@@ -80,8 +82,9 @@
               <th scope="col">Gender</th>
               <th scope="col"></th>
             </tr></thead><tbody><tr>`;
-      axios.get("https://swapi.dev/api/people/ ").then(function (response) {
-        // debugger;
+              
+      axios.get("https://swapi.dev/api/people/").then(function (response) {
+        debugger;
         console.log(response);
         let r = response.data.results;
         //firstname

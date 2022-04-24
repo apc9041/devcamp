@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TFTHW</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+    <p id="todayRecovered"></p>
+    <a id="countries"></a>
+    <script>
+
+        function todayRecovered() {
+            axios
+                .get(`https://disease.sh/v3/covid-19/countries`)
+                .then(function (response) {
+                    let allCovidData = response.data;
+                    console.log(allCovidData);
+
+                    let callbackFunction = (sum, obj) => {
+                        return sum + obj.todayRecovered
+                    };
+
+                    let step2 = allCovidData.reduce(callbackFunction, 0)
+                    console.log("todayRecovered = " + step2);
+                    document.getElementById("todayRecovered").innerText = "todayRecovered = " + step2;
+
+
+                    let step3 = allCovidData.filter(function (obj) {
+                        return obj.todayDeaths < 10 && obj.population > 100000000;
+
+                    });
+                    console.log(step3);
+
+                    let map = step3.map(function (obj) {
+                        return obj.country
+
+                    });
+                    console.log(map);
+
+                    let Countries = map
+                    function studlyCaps(words, word) {
+                        return words + " " + word + " ";
+                    }
+                    let Ncountries = Countries.reduce(studlyCaps);
+                    console.log("Countries are " + " * " + Ncountries + " * ");
+                    document.getElementById(countries).innerText = Ncountries;
+
+
+                });
+
+        };
+        todayRecovered()
+
+    </script>
+</body>
+
+</html>
