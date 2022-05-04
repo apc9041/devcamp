@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test14</title>
+</head>
+<body>
+    <script>
+        class Employee {
+  constructor(firstname, lastname, salary) {
+    this.salary = salary; // simulate private variable
+
+    this.firstname = firstname; // public property
+    this.lastname = lastname; // public property
+  }
+  getSalary() { // simulate public method
+      return this.salary;
+  }
+}
+let dang = new Employee('Dang','Red', 10000);
+console.log(dang.firstname); // Dang
+console.log(dang.lastname); // Red
+console.log(dang.getSalary()); // 10000
+
+
+class CEO extends Employee {
+  constructor(firstname, lastname, salary) {
+    super(firstname, lastname, salary);
+  }
+  getSalary(){ // simulate public method
+    return super.getSalary()*2;
+  };
+  hello() { // simulate public method
+    console.log("Hi, nice to meet you. "+this.firstname+"!");
+  }
+}
+let ceo = new CEO('Somchai','Sudlor', 30000);
+console.log(ceo.firstname); // Somchai
+console.log(ceo.lastname); // Sudlor
+ceo.hello(); // Hi, nice to meet you. Somchai
+console.log(ceo.getSalary()); // 60000
+
+
+//Programmer
+class Programmer extends Employee {
+    constructor(firstname, lastname, salary) {
+        super(firstname, lastname, salary);
+    }
+    getSalary(){
+        return super.getSalary()*2.5;
+    };
+    hello() {
+        console.log("Hi, Programmer " + this.firstname+" !")
+    };
+    working() {
+        console.log(`${this.firstname} is working.`)
+    }
+}
+let programmer = new Programmer('Apichart','Saelu',20000);
+console.log(programmer.firstname);
+console.log(programmer.lastname);
+programmer.hello();
+console.log(programmer.getSalary());
+console.log(programmer.working())
+
+    </script>
+</body>
+</html>
