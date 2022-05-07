@@ -1,76 +1,94 @@
 import React from 'react';
-import React, { useState } from 'react';
-import PictureCard from './PictureCard';
+import PictureCard from './PictureCard'
 
 let PikkanodeReact = () => {
 
     let colors = ['red', 'blue', 'green', 'purple', 'pink'];
     let random_color = colors[Math.floor(Math.random() * colors.length)];
 
-
+//navbar
 
     //picture
 
     let peaple = [{
-        id: 1,
+        id: 0,
         img: "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-        name: "Willy",
+        createBy: "Willy",
+        likeCount: 0, 
+        CommentCount: 0,
     }, {
         id: 2,
         img: "https://thumbs.dreamstime.com/z/tourist-retro-camera-travel-photographer-happy-young-31655903.jpg",
-        name: "Wilson",
+        createBy: "Wilson",
+        likeCount: 0,
+        CommentCount: 0,
     }, {
         id: 3,
         img: "https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2020/05/Frame-9.png",
-        name: "Katina",
+        createBy: "Katina",
+        likeCount: 0,
+        CommentCount: 0,
     }, {
         id: 4,
         img: "https://www.inpixio.com/remove-background/images/main-after.jpg",
-        name: "Oilly",
+        createBy: "Oilly",
+        likeCount: 0,
+        CommentCount: 0,
     }, {
         id: 5,
         img: "https://www.esafety.gov.au/sites/default/files/2019-08/Remove%20images%20and%20video.jpg",
-        name: "Kristin",
+        createBy: "Kristin",
+        likeCount: 0,
+        CommentCount: 0,
     }, {
         id: 6,
         img: "https://www.slazzer.com/static/images/home-page/banner-orignal-image.jpg",
-        name: "Selena",
+        createBy: "Selena",
+        likeCount: 0,
+        CommentCount: 0,
     }, {
         id: 7,
         img: "https://d5nunyagcicgy.cloudfront.net/external_assets/hero_examples/hair_beach_v391182663/original.jpeg",
-        name: "SailorMoon",
+        createBy: "SailorMoon",
+        likeCount: 0,
+        CommentCount: 0,
     }, {
         id: 8,
         img: "https://blog.hubspot.com/hubfs/Developer%20centering%20images%20in%20HTML.jpg",
-        name: "Tom",
+        createBy: "Tom",
+        likeCount: 0,
+        CommentCount: 0,
     },
     ];
 
     const message = peaple.map((x, i, a) => {
         return (
             <div style={{ 
-                backgroundColor: "#0dcaf0", 
+                backgroundColor: "#0dcaf0",
                 display:"inline-block", 
-                height: 250, 
-                adding:"10px",
+                height: 300, 
+                padding:"10px",
                 margin:"10px",
-                borderRadius: "10px"  
-            }} 
+                borderRadius: "10px"  }} 
+                
                 key={`picture${i}`}>
+
                 <div style={{ 
                     padding: "10px"}}>
                     <img style={{ 
                         height: "150px",
                         width:"200px",
-                        borderRadius: "5px" 
-                        }} 
+                        borderRadius: "5px" }} 
                         src={x.img} 
-                        alt={x.name}
-                        
-                         />
+                        alt={x.createBy} />
                 </div>
                 <div>
-                    <h3>{x.name}</h3>
+                    <h3>{x.createBy}</h3>
+                    <h5></h5>
+                    <PictureCard
+                        key={x.id}
+                        likeCount={x.likeCount} 
+                        CommentCount={x.CommentCount}/>
                 </div>
             </div>
         );

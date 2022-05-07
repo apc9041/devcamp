@@ -1,13 +1,11 @@
 import React from 'react';
-import React, { useState } from 'react';
-import PictureCard from './PictureCard';
 
 let PikkanodeReact = () => {
 
     let colors = ['red', 'blue', 'green', 'purple', 'pink'];
     let random_color = colors[Math.floor(Math.random() * colors.length)];
 
-
+//navbar
 
     //picture
 
@@ -48,26 +46,9 @@ let PikkanodeReact = () => {
 
     const message = peaple.map((x, i, a) => {
         return (
-            <div style={{ 
-                backgroundColor: "#0dcaf0", 
-                display:"inline-block", 
-                height: 250, 
-                adding:"10px",
-                margin:"10px",
-                borderRadius: "10px"  
-            }} 
-                key={`picture${i}`}>
-                <div style={{ 
-                    padding: "10px"}}>
-                    <img style={{ 
-                        height: "150px",
-                        width:"200px",
-                        borderRadius: "5px" 
-                        }} 
-                        src={x.img} 
-                        alt={x.name}
-                        
-                         />
+            <div style={{ backgroundColor: "#0dcaf0", display:"inline-block", height: 250, padding:"10px",margin:"10px",borderRadius: "10px"  }} key={`picture${i}`}>
+                <div style={{ padding: "10px"}}>
+                    <img style={{ height: "150px",width:"200px",borderRadius: "5px" }} src={x.img} alt={x.name} />
                 </div>
                 <div>
                     <h3>{x.name}</h3>
