@@ -1,8 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import './index.css';
-import { Comment, Avatar, Form, Button, List, Input } from 'antd';
-import moment from 'moment';
+import { Comment, Form, Button, List, Input } from 'antd';
 
 
 
@@ -24,7 +23,7 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
     </Form.Item>
     <Form.Item>
       <Button htmlType="submit" loading={submitting} onClick={onSubmit} type="primary">
-        About Me
+        Add Comment
       </Button>
     </Form.Item>
   </>

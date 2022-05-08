@@ -10,8 +10,8 @@ import {
   VideoCameraOutlined,
   UploadOutlined,HomeOutlined,MessageOutlined,
 } from '@ant-design/icons';
-import Form from './form';
 import FormReg from './form';
+import Input_Form from './ContentForm';
 
 
 const { Header, Sider, Content, } = Layout;
@@ -76,6 +76,7 @@ class App extends React.Component {
             }}
           >
             <FormReg/>
+            {/* <Input_Form/> */}
           </Content>
         </Layout>
       </Layout>

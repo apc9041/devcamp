@@ -10,15 +10,17 @@ import {
   Cascader,
   DatePicker,
   InputNumber,
-  TreeSelect,
-  Switch,
   Checkbox,
+  Space,
 } from 'antd';
 import CheckAccept from './CheckAccept';
 import CommentBox from './Comment';
-import SelectPv from './SelectPv';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
+import Foreign from './SelectionInput';
+import AddFieldFunc from './AddField'
+import SubmitModalFunc from './SubmitModal';
+
 
 
 
@@ -38,31 +40,50 @@ const FormReg = () => {
     }
   };
 
-  const onChange=(e)=>{
+  const onChange = (e) => {
     console.log(`checked = ${e.target.checked}`);
-  return (
-    () => <Checkbox onChange={onChange}>Checkbox</Checkbox>)};
+    return (
+      () => <Checkbox onChange={onChange}>Checkbox</Checkbox>)
+  };
 
 
   const RadioGender = () => {
-    return ( <>
-    <Radio.Group name="radiogroup" defaultValue={1}>
-      <Radio value={1}>Male</Radio>
-      <Radio value={2}>Female</Radio>
-    </Radio.Group> </>)
+    return (<>
+      <Radio.Group name="radiogroup" defaultValue={1}>
+        <Radio value={1}>Male</Radio>
+        <Radio value={2}>Female</Radio>
+      </Radio.Group> </>)
   };
 
   const CheckedAccept = (rule, value) => {
     console.log(value);
-    if (onChange={onChange}) {
+    if (onChange = { onChange }) {
       return Promise.resolve();
     } else {
       return Promise.reject(new Error("Pleae Check"));
     }
   };
 
+  const FieldAge = (rule, value) => {
+    if (value < 18){
+      return Promise.reject(new Error('Sorry, You are too young')) ;
+    }
+    else if (value > 60 && value <= 99){
+      return Promise.reject(new Error('Sorry, You are too old')) ;
+    } 
+    else if (value > 99) {
+      return Promise.reject(new Error('Error: Maximum number is 99'));
+    } else {
+      Promise.resolve()
+    }
+  };
 
 
+          
+          function disabledDate(current) {
+            // Can not select days before today and today
+            return current && current < moment().endOf("day").subtract(1, "days");
+          }
 
 
   return (
@@ -102,48 +123,49 @@ const FormReg = () => {
       <Form.Item
         label="Age"
         name="inputnumber"
-      //   rules={{
-      //       min: 0,
-      //       max: 500
-      //  } }
-      >
-        <InputNumber min={1} max={99} />
+        rules={[
+          {
+            validator: FieldAge
+          },
+        ]}>
+        <InputNumber />
       </Form.Item>
 
-      <Form.Item 
-      label="Gender" 
-      valuePropName="checked"
-      name="gender">
+      <Form.Item
+        label="Gender"
+        valuePropName="checked"
+        name="gender">
         <RadioGender />
       </Form.Item>
 
-      <Form.Item label="" 
-        name="Comment"
-        style={{textAlign:'center'}}
-        wrapperCol={{
-          offset: 4,
+
+      <Form.Item         
+      wrapperCol={{
+          offset: 1,
           span: 14,
-        }}>
-        <CommentBox />
+        }}><Foreign/></Form.Item>
+      
+      
+
+      <Form.Item
+        name={['user', 'datePicker']} label="Member Period">
+        <Space direction="vertical" size={12} />
+        <DatePicker
+          format="YYYY-MM-DD"
+          // maxDate={addDays(new Date(), 5)}
+          minDate={new Date()}
+          disabledDate={ disabledDate}
+        />
       </Form.Item>
 
-
-      <Form.Item 
-        label="Province"
-        name="select">
-        <Select defaultValue={['Bangkok']}>
-          <Select.Option value="Bangkok">Bangkok</Select.Option>
-          <Select.Option value="Phuket">Phuket</Select.Option>
-          <Select.Option value="Chiang Mai">Chiang Mai</Select.Option>
-          <Select.Option value="Khon Kaen">Khon Kaen</Select.Option>
-          <Select.Option value="Chanthaburi">Chanthaburi</Select.Option>
-        </Select>
-      </Form.Item>
-
-      <Form.Item 
-        label="Member Period"
-        name="DatePicker">
-        <DatePicker excludeDates={[moment(), moment().subtract(10, "days")]}/>
+      <Form.Item
+      label="Skills"
+      name="Skills"
+      wrapperCol={{
+        offset: 0,
+        span: 14,
+      }}>
+        <AddFieldFunc/>
       </Form.Item>
 
       <Form.Item label="Hobby">
@@ -192,7 +214,18 @@ const FormReg = () => {
       </Form.Item>
 
 
-      <Form.Item label="" 
+      <Form.Item label="About Me"
+        name="Comment"
+        style={{ textAlign: 'center' }}
+        wrapperCol={{
+          offset: 0,
+          span: 14,
+        }}>
+        <CommentBox />
+      </Form.Item>
+
+
+      <Form.Item label=""
         name="CheckBox"
         // style={{textAlign:'center'}}
         wrapperCol={{
@@ -204,24 +237,25 @@ const FormReg = () => {
             validator: CheckedAccept
           },
         ]}>
-        <CheckAccept  onChange={onChange}/>
+        <CheckAccept onChange={onChange} />
       </Form.Item>
 
-      <Form.Item label="" 
-      // style={{textAlign:'center'}}
-      wrapperCol={{
-        offset: 9,
-        // span: 15,
-      }}>
+      {/* <Form.Item label=""
+        wrapperCol={{
+          offset: 9,
+        }}>
         <Button type="primary" >Submit</Button>
+      </Form.Item> */}
+
+
+
+      <Form.Item
+      style={{ textAlign: 'center' }}>
+        <SubmitModalFunc         
+        wrapperCol={{
+          offset: 10,
+        }}/>
       </Form.Item>
-
-
-
-
-
-
-
 
 
 
