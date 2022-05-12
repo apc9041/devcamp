@@ -12,7 +12,7 @@ export default () => (
     mode="multiple"
     style={{ width: '100%' }}
     placeholder="select one country"
-    defaultValue={['Bangkok']}
+   
     onChange={SelectPv}
     optionLabelProp="label"
   >

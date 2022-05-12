@@ -89,8 +89,8 @@ class Slider_Form extends React.Component {
       const { disabled } = this.state;
       return (
         <>
-          <Slider defaultValue={30} disabled={disabled} />
-          <Slider range defaultValue={[20, 50]} disabled={disabled} />
+          <Slider disabled={disabled} />
+          <Slider range  disabled={disabled} />
           Disabled: <Switch size="small" checked={disabled} onChange={this.handleDisabledChange} />
         </>
       );
@@ -273,7 +273,7 @@ const layout = {
 
 
             <div className="Checkbox-Group">
-                <Checkbox.Group options={plainOptions} defaultValue={['Apple']} onChange={onChange_Checkbox} />
+                <Checkbox.Group options={plainOptions}  onChange={onChange_Checkbox} />
             </div>
           
 

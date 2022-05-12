@@ -3,6 +3,7 @@ import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
 const AddFieldFunc = () => {
   const onFinish = values => {
+    
     console.log('Received values of form:', values);
   };
 

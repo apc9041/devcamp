@@ -17,9 +17,11 @@ const tailLayout = {
 };
 
 const Foreign = () => {
+    
   const [form] = Form.useForm();
 
   const onGenderChange = (value) => {
+    console.log(value);
     switch (value) {
       case 'male':
         form.setFieldsValue({
@@ -72,7 +74,7 @@ const Foreign = () => {
         <Select
           placeholder="Select a option and change input text above"
           onChange={onGenderChange}
-          defaultValue={['Bangkok']}
+         
           allowClear
         >
 
@@ -102,7 +104,8 @@ const Foreign = () => {
                 },
               ]}
             >
-              <Input />
+              <Input value=""
+              />
             </Form.Item>
           ) : null
         }

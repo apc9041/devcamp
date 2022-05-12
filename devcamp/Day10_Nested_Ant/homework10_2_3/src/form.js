@@ -11,7 +11,7 @@ import {
   DatePicker,
   InputNumber,
   Checkbox,
-  Space,
+  Space,Modal
 } from 'antd';
 import CheckAccept from './CheckAccept';
 import CommentBox from './Comment';
@@ -27,12 +27,24 @@ import SubmitModalFunc from './SubmitModal';
 const FormReg = () => {
   const [componentSize, setComponentSize] = useState('default');
 
-  const onFormLayoutChange = ({ size }) => {
-    setComponentSize(size);
+  const validateMessages = {
+    required: "${label} is required!",
+    types: {
+      email: "${label} is not a valid email!",
+      number: "${label} is not a valid number!",
+    },
+    number: {
+      range: "${label} must be between ${min} and ${max}",
+    },
   };
 
+
+  // const onFormLayoutChange = ({ size }) => {
+  //   setComponentSize(size);
+  // };
+
   const customValidate = (rule, value) => {
-    console.log(value);
+    // console.log(value);
     if (value === "test") {
       return Promise.resolve();
     } else {
@@ -42,22 +54,24 @@ const FormReg = () => {
 
   const onChange = (e) => {
     console.log(`checked = ${e.target.checked}`);
+    console.log(`${e.target}`)
     return (
       () => <Checkbox onChange={onChange}>Checkbox</Checkbox>)
   };
 
 
   const RadioGender = () => {
+
     return (<>
-      <Radio.Group name="radiogroup" defaultValue={1}>
+      <Radio.Group name="radiogroup" onChange={onChange}>
         <Radio value={1}>Male</Radio>
         <Radio value={2}>Female</Radio>
       </Radio.Group> </>)
   };
 
   const CheckedAccept = (rule, value) => {
-    console.log(value);
-    if (onChange = { onChange }) {
+    // console.log(value);
+    if (value) {
       return Promise.resolve();
     } else {
       return Promise.reject(new Error("Pleae Check"));
@@ -65,12 +79,13 @@ const FormReg = () => {
   };
 
   const FieldAge = (rule, value) => {
-    if (value < 18){
-      return Promise.reject(new Error('Sorry, You are too young')) ;
+    // console.log(value);
+    if (value < 18) {
+      return Promise.reject(new Error('Sorry, You are too young'));
     }
-    else if (value > 60 && value <= 99){
-      return Promise.reject(new Error('Sorry, You are too old')) ;
-    } 
+    else if (value > 60 && value <= 99) {
+      return Promise.reject(new Error('Sorry, You are too old'));
+    }
     else if (value > 99) {
       return Promise.reject(new Error('Error: Maximum number is 99'));
     } else {
@@ -79,190 +94,212 @@ const FormReg = () => {
   };
 
 
-          
-          function disabledDate(current) {
-            // Can not select days before today and today
-            return current && current < moment().endOf("day").subtract(1, "days");
-          }
+  function disabledDate(current) {
+    // Can not select days before today and today
+    return current && current < moment().endOf("day").subtract(1, "days");
+  }
+
+  const onFinish = async (values) => {
+    console.log(values.input);
+    console.log('values of form: ', values);
+  };
+
+  // Modal.info({
+  //   content: (
+  //     <pre>
+  //       First Name: {input}
+  //     </pre>
+  //   ),
+  // });
 
 
-  return (
-    <Form
-      labelCol={{
-        span: 4,
-      }}
+
+
+return (
+  <Form
+    labelCol={{
+      span: 4,
+    }}
+    wrapperCol={{
+      span: 14,
+    }}
+    layout="horizontal"
+    initialValues={{
+      size: componentSize,
+    }}
+    name="nest-messages"
+    onFinish={onFinish}
+    validateMessages={validateMessages}
+    // onValuesChange={onFormLayoutChange}
+    size={componentSize}
+  // onFinish={onFinish}
+  >
+    <Form.Item label="Form Size" name="size">
+      <Radio.Group>
+        <Radio.Button value="small">Small</Radio.Button>
+        <Radio.Button value="default">Default</Radio.Button>
+        <Radio.Button value="large">Large</Radio.Button>
+      </Radio.Group>
+    </Form.Item>
+
+    <Form.Item
+      label="First Name"
+      name="input"
+      rules={[
+        {
+          validator: customValidate
+        },
+      ]}>
+      <Input maxLength={50} />
+    </Form.Item>
+
+    <Form.Item
+      label="Age"
+      name="inputnumber"
+      rules={[
+        // {
+        //   validator: FieldAge
+        // },
+      ]}>
+      <InputNumber />
+    </Form.Item>
+
+    <Form.Item
+      label="Gender"
+      valuePropName="checked"
+      name="gender"
+      rules={[
+        {
+        required: true,
+      },
+      ]}>
+      <RadioGender />
+    </Form.Item>
+
+
+    <Form.Item
       wrapperCol={{
+        offset: 1,
         span: 14,
-      }}
-      layout="horizontal"
-      initialValues={{
-        size: componentSize,
-      }}
-      onValuesChange={onFormLayoutChange}
-      size={componentSize}
-    >
-      <Form.Item label="Form Size" name="size">
-        <Radio.Group>
-          <Radio.Button value="small">Small</Radio.Button>
-          <Radio.Button value="default">Default</Radio.Button>
-          <Radio.Button value="large">Large</Radio.Button>
-        </Radio.Group>
-      </Form.Item>
-
-      <Form.Item
-        label="First Name"
-        name="input"
-        rules={[
-          {
-            validator: customValidate
-          },
-        ]}>
-        <Input maxLength={50} />
-      </Form.Item>
-
-      <Form.Item
-        label="Age"
-        name="inputnumber"
-        rules={[
-          {
-            validator: FieldAge
-          },
-        ]}>
-        <InputNumber />
-      </Form.Item>
-
-      <Form.Item
-        label="Gender"
-        valuePropName="checked"
-        name="gender">
-        <RadioGender />
-      </Form.Item>
+      }}><Foreign />
+    </Form.Item>
 
 
-      <Form.Item         
-      wrapperCol={{
-          offset: 1,
-          span: 14,
-        }}><Foreign/></Form.Item>
-      
-      
 
-      <Form.Item
-        name={['user', 'datePicker']} label="Member Period">
-        <Space direction="vertical" size={12} />
-        <DatePicker
-          format="YYYY-MM-DD"
-          // maxDate={addDays(new Date(), 5)}
-          minDate={new Date()}
-          disabledDate={ disabledDate}
-        />
-      </Form.Item>
+    <Form.Item
+      name={['user', 'datePicker']} label="Member Period">
+      <Space direction="vertical" size={12} />
+      <DatePicker
+        format="YYYY-MM-DD"
+        // maxDate={addDays(new Date(), 5)}
+        minDate={new Date()}
+        disabledDate={disabledDate}
+      />
+    </Form.Item>
 
-      <Form.Item
+    <Form.Item
       label="Skills"
       name="Skills"
       wrapperCol={{
         offset: 0,
         span: 14,
       }}>
-        <AddFieldFunc/>
-      </Form.Item>
+      <AddFieldFunc />
+    </Form.Item>
 
-      <Form.Item label="Hobby">
-        <Cascader
-          options={[
-            {
-              value: 'Watching Movie',
-              label: 'Watching movie',
-              children: [
-                {
-                  value: 'Action',
-                  label: 'Action',
-                },
-                {
-                  value: 'Drama',
-                  label: 'Drama'
-                },
-                {
-                  value: 'Romantic',
-                  label: 'Romantic',
-                },
-              ],
-            },
-            {
-              value: 'Read a book',
-              label: 'Read a book',
-              children: [
-                {
-                  value: 'Academic',
-                  label: 'Academic',
-                },
-                {
-                  value: 'Novel',
-                  label: 'Novel'
-                },
-                {
-                  value: 'News',
-                  label: 'News',
-                },
-              ],
-            },
+    <Form.Item label="Hobby">
+      <Cascader
+        options={[
 
-
-          ]}
-        />
-      </Form.Item>
-
-
-      <Form.Item label="About Me"
-        name="Comment"
-        style={{ textAlign: 'center' }}
-        wrapperCol={{
-          offset: 0,
-          span: 14,
-        }}>
-        <CommentBox />
-      </Form.Item>
-
-
-      <Form.Item label=""
-        name="CheckBox"
-        // style={{textAlign:'center'}}
-        wrapperCol={{
-          offset: 4,
-          // span: 15,
-        }}
-        rules={[
           {
-            validator: CheckedAccept
+            value: 'Watching Movie',
+            label: 'Watching movie',
+            children: [
+              {
+                value: 'Action',
+                label: 'Action',
+              },
+              {
+                value: 'Drama',
+                label: 'Drama'
+              },
+              {
+                value: 'Romantic',
+                label: 'Romantic',
+              },
+            ],
           },
-        ]}>
-        <CheckAccept onChange={onChange} />
-      </Form.Item>
+          {
+            value: 'Read a book',
+            label: 'Read a book',
+            children: [
+              {
+                value: 'Academic',
+                label: 'Academic',
+              },
+              {
+                value: 'Novel',
+                label: 'Novel'
+              },
+              {
+                value: 'News',
+                label: 'News',
+              },
+            ],
+          },
 
-      {/* <Form.Item label=""
-        wrapperCol={{
-          offset: 9,
-        }}>
-        <Button type="primary" >Submit</Button>
-      </Form.Item> */}
+
+        ]}
+      />
+    </Form.Item>
+
+
+    <Form.Item label="About Me"
+      name="Comment"
+      style={{ textAlign: 'center' }}
+      wrapperCol={{
+        offset: 0,
+        span: 14,
+      }}>
+      <CommentBox />
+    </Form.Item>
+
+
+    <Form.Item label=""
+      name="CheckBox"
+      valuePropName="checked"
+      // style={{textAlign:'center'}}
+      wrapperCol={{
+        offset: 4,
+        // span: 15,
+      }}
+      rules={[
+        // {
+        //   validator: CheckedAccept
+        // },
+      ]}>
+      <CheckAccept onChange={onChange} />
+    </Form.Item>
+
+    <Form.Item label=""
+      wrapperCol={{
+        offset: 9,
+      }}>
+      <Button type="primary" htmlType="submit"  >Submit</Button>
+    </Form.Item>
 
 
 
-      <Form.Item
+    {/* <Form.Item
       style={{ textAlign: 'center' }}>
         <SubmitModalFunc         
         wrapperCol={{
           offset: 10,
         }}/>
-      </Form.Item>
+      </Form.Item> */}
 
-
-
-
-
-    </Form >
-  );
+  </Form >
+);
 };
 
 export default () => <FormReg />;

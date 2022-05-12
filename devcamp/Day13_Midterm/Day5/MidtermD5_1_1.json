@@ -1,0 +1,47 @@
+[
+    {
+        "firstname": "Apichart",
+        "lastname": "Saelu",
+        "age": "35",
+        "gender": "male",
+        "address":{
+            "sub_district":"Vichit",
+            "district":"Muang",
+            "province":"Phuket"
+            },
+        "contact":{
+            "mobile":"0888888888",
+            "email":"abc@gmail.com"
+        }
+    },
+    {
+        "firstname": "Anusara",
+        "lastname": "Phuwiangkaew",
+        "age": "35",
+        "gender": "female",
+        "address":{
+            "sub_district":"Vichit",
+            "district":"Muang",
+            "province":"Phuket"
+            },
+        "contact":{
+            "mobile":"0666666666",
+            "email":"def@gmail.com"
+        }
+    },
+    {
+        "firstname": "Athicha",
+        "lastname": "Saelu",
+        "age": "8",
+        "gender": "female",
+        "address":{
+            "sub_district":"Vichit",
+            "district":"Muang",
+            "province":"Phuket"
+            },
+        "contact":{
+            "mobile":"0555555555",
+            "email":"ghi@gmail.com"
+        }
+    }
+]  

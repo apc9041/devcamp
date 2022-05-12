@@ -17,6 +17,7 @@ const CommentList = ({ comments }) => (
 );
 
 const Editor = ({ onChange, onSubmit, submitting, value }) => (
+  
   <>
     <Form.Item>
       <TextArea rows={4} onChange={onChange} value={value} />
@@ -30,6 +31,7 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
 );
 
 class CommentBox extends React.Component {
+  
   state = {
     comments: [],
     submitting: false,
