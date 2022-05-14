@@ -10,7 +10,7 @@ import {
     Radio,
     Button,
     Checkbox,
-    Modal,
+    Modal, onChange,
 } from 'antd';
 import { DatePicker } from 'antd';
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
@@ -66,13 +66,30 @@ const customValidate = (rule, value) => {
 
 
 const RadioGender = () => {
-
-    return (<>
-      <Radio.Group name="radiogroup" onChange={onChange}>
-        <Radio value={1}>Male</Radio>
-        <Radio value={2}>Female</Radio>
-      </Radio.Group> </>)
+    const [value, setValue] = React.useState(1);
+    const onChange = e => {
+      console.log(e.target.value);
+      setValue(e.target.value);
+    };
+    return (
+      <Radio.Group onChange={onChange} value={value}>
+        <Radio value={'Male'}>Male</Radio>
+        <Radio value={'Female'}>Female</Radio>
+      </Radio.Group>
+    );
   };
+
+
+// const RadioGender = () => {
+
+//     return (<>
+//       <Radio.Group name="radiogroup" 
+//       onChange={onChange}
+//       >
+//         <Radio value={1}>Male</Radio>
+//         <Radio value={2}>Female</Radio>
+//       </Radio.Group> </>)
+//   };
 
 
 const FormComp = () => {
@@ -141,6 +158,24 @@ const FormComp = () => {
                 <Input />
             </Form.Item>
 
+            <Form.Item
+                name="gender"
+                label="Gender"
+                valuePropName="checked"
+                rules={[
+                    {
+                        // validator: RadioGender,
+                        required: RadioGender,
+                    },
+                ]}
+            >
+                <RadioGender />
+                {/* <Radio.Group>
+                    <Radio value="male">Male</Radio>
+                    <Radio value="female">Female</Radio>
+                </Radio.Group> */}
+            </Form.Item>
+
 
 
             <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 10 }}>
@@ -153,17 +188,7 @@ const FormComp = () => {
             </Form.Item>
 
 
-            <Form.Item
-                label="Gender"
-                valuePropName="checked"
-                name="gender"
-                rules={[
-                    {
-                        required: true,
-                    },
-                ]}>
-                <RadioGender />
-            </Form.Item>
+
 
 
 
