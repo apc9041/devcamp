@@ -94,6 +94,8 @@ const customValidate = (rule, value) => {
   }
 };
 
+
+
 const FormComp = () => {
   const [form] = Form.useForm();
 
@@ -308,6 +310,7 @@ const FormComp = () => {
                 required={false}
                 key={field.key}
               >
+                
                 <Form.Item
                   {...field}
                   validateTrigger={["onChange", "onBlur"]}
@@ -334,6 +337,8 @@ const FormComp = () => {
                 ) : null}
               </Form.Item>
             ))}
+
+
             <Form.Item>
               <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 6 }}>
                 <Button
@@ -351,6 +356,7 @@ const FormComp = () => {
           </>
         )}
       </Form.List>
+
 
       <Form.Item
         name="agreement"

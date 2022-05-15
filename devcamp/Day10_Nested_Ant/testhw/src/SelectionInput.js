@@ -63,7 +63,7 @@ const Foreign = () => {
 
 
       <Form.Item
-        name="province"
+        name="gender"
         label="Province"
         rules={[
           {
@@ -73,9 +73,11 @@ const Foreign = () => {
       >
         <Select
           placeholder="Select a option and change input text above"
-          // onChange={onGenderChange}
-          // allowClear
+          onChange={onGenderChange}
+         
+          allowClear
         >
+
           <Option value="Bangkok">Bangkok</Option>
           <Option value="Phuket">Phuket</Option>
           <Option value="Chiang Mai">Chiang Mai</Option>
@@ -85,21 +87,22 @@ const Foreign = () => {
         </Select>
       </Form.Item>
 
+
+
       <Form.Item
         noStyle
-        shouldUpdate={(prevValues, currentValues) => 
-          prevValues.province !== currentValues.province}
+        shouldUpdate={(prevValues, currentValues) => prevValues.gender !== currentValues.gender}
       >
         {({ getFieldValue }) =>
-          getFieldValue('province') === 'other' ? (
+          getFieldValue('gender') === 'other' ? (
             <Form.Item
-              name="other"
+              name="customizeGender"
               label="Other"
-              // rules={[
-              //   {
-              //     required: true,
-              //   },
-              // ]}
+              rules={[
+                {
+                  required: true,
+                },
+              ]}
             >
               <Input value=""
               />
@@ -107,9 +110,6 @@ const Foreign = () => {
           ) : null
         }
       </Form.Item>
-
-
-
 
     </Form>
   );
