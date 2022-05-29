@@ -1,14 +1,32 @@
 var express = require('express');
 var router = express.Router();
-var mysql = require('mysql2');
+// var mysql = require('mysql2');
 var port = 3001;
 var cors = require('cors');
 var bodyParser = require("body-parser");
+const mysql = require('mysql2/promise')
+
+
+
+//----------------------------------connection pool-----------------------------------------
+const pool  = mysql.createPool({
+  connectionLimit : 10,
+  host            : 'localhost',
+  user            : 'root',
+  database        : 'day19',
+  port            : 3306,
+});
+router.get('/user', async function (req, res, next) {
+  const [rows, fields] = await pool.query('SELECT * FROM test_post1');
+  res.status(200).json(rows);
+});
+
+
 
 // ------------------------get--------------------------------------------------------------
 /* GET users listing. */
-router.get('/users', function (req, res, next) {
-  const connection = mysql.createConnection({
+router.get('/users',async function (req, res, next) {
+  const connection = await mysql.createConnection({
     host: 'localhost',
     user: 'root',
     database: 'day19',
@@ -33,12 +51,38 @@ router.get('/users', function (req, res, next) {
   connection.end();
 });
 
+// ------------------------get--------------------------------------------------------------
+/* GET users listing. */
+router.get('/company',async function (req, res, next) {
+  const connection = await mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    database: 'day19',
+    port: 3306,
+  });
 
+  connection.connect();
+
+  // console.log('start query : ' + new Date().getTime());
+
+  connection.query(
+
+    `select * from companydata`,
+
+    (err, rows, fileLoaderlds) => {
+      if (err) throw err;
+
+      // console.log('end query : ' + new Date().getTime());
+      res.json(rows);
+    });
+
+  connection.end();
+});
 
 // ------------------------Post employee--------------------------------------------------------------
 
-router.post('/users/add', function (req, res, next) {
-  const connection = mysql.createConnection({
+router.post('/users/add', async function (req, res, next) {
+  const connection = await mysql.createConnection({
     host: 'localhost',
     user: 'root',
     database: 'day19',
@@ -79,9 +123,9 @@ router.post('/users/add', function (req, res, next) {
 
 // ------------------------Post company--------------------------------------------------------------
 
-router.post('/users/company', (req, res) => {
+router.post('/users/company', async (req, res) => {
  
-  const connection = mysql.createConnection({
+  const connection = await mysql.createConnection({
     host: 'localhost',
     user: 'root',
     database: 'day19',

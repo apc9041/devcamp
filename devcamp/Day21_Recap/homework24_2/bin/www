@@ -5,9 +5,8 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('test-backend:server');
+var debug = require('debug')('homework21-1-test:server');
 var http = require('http');
-const mysql = require('mysql2/promise')
 
 /**
  * Get port from environment and store in Express.

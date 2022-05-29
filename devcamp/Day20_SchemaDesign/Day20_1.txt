@@ -1,0 +1,60 @@
+    create table order_item (
+    id int auto_increment,
+    product_name varchar(30),
+    amount int not null,
+    discount int not null,
+    primary key (id)
+    );
+    
+    create table orders (
+    order_id int auto_increment,
+    date_ timestamp default now(),
+    contain varchar(30),
+    place varchar(30),
+    primary key (order_id)
+    );
+    
+    create table customer (	
+    customer_id int auto_increment,	
+    name varchar(32),	
+    address varchar(32),	
+    primary key (customer_id)
+    );
+    
+    create table employees (
+    employee_id int auto_increment, 
+	employee_name varchar(30), 
+	address varchar(30),
+	salary int not null,
+    sold int not null,
+    employee_department varchar(30) not null,
+    primary key (employee_id),
+    unique (employee_name)
+	);
+
+ 	create table department (
+ 	department_id int auto_increment,
+    department_name varchar(30),
+	budget int not null,
+    primary key (department_id),
+    unique (department_name)
+	);
+
+	create table product (
+	product_id int auto_increment,
+	product_name varchar(30),
+	product_desc varchar(30),
+	product_price int not null,
+	product_quantity int not null,
+    primary key (product_id)
+	);
+
+	create table supplier (
+    supplier_id int auto_increment,
+    supplier_name varchar(30) not null,
+    product_supply varchar(30),
+	supplier_address varchar(30),
+	phone_number varchar(13),
+    primary key (supplier_id),
+    unique (supplier_name)
+	);
