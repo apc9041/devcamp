@@ -46,14 +46,25 @@ useEffect(() => {
      console.log(decoded);
   //    call username by using useState 
      const username = decoded.username; 
-     setUsername(username);  
+     setUsername(username);
+
+     const firstname = decoded.firstname; 
+     setFirstname(firstname);
+
+     const lastname = decoded.lastname; 
+     setLastname(lastname);
+
+     const email = decoded.email; 
+     setEmail(email);
    
    })
  
   return (
     <>
       <h2 className = "login">Hey {username} !  </h2>
-      <h2 className = "login">Hey {firstname} !  </h2>
+      <h2 className = "login">Firstname : {firstname} !  </h2>
+      <h2 className = "login">lastname : {lastname} !  </h2>
+      <h2 className = "login">Email : {email} !  </h2>
       {/* <h2 className = "login">Hey {username} {firstname} {lastname} {email} !  </h2> */}
       <h2 className = 'space'> welcome to your page!</h2>
       <h3 className = "space">My shopping cart items</h3>

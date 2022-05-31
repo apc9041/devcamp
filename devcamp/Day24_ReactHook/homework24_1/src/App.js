@@ -12,16 +12,17 @@ function Form(props) {
    
 
   const submitForm = () => {
-    console.log(firstname.current.value)
-    console.log(lastname.current.value)
-    console.log(gender.current.value)
+    console.log(firstname.current.value);
+    console.log(lastname.current.value);
+    console.log(gender.current.value);
 
     props.getValue({
-      name: firstname.current.value, 
+      name: firstname.current.value,
       lastname: lastname.current.value,
-      gender: gender.current.value
-    })
-  }
+      gender: gender.current.value,
+    });
+    
+  };
 
   return (
     <>
@@ -51,6 +52,14 @@ function App() {
   //getValue
   const getValue = (value) => {
     console.log(value)
+
+    if(value.gender === "Male"){
+      return setMaleList([...maleList,value])
+    }else if(value.gender === "Female"){
+      return setFemaleList([...FemaleList,value])
+    }else {
+      return setNaList([...NaList,value])
+    }
   }
   return (
     <>
