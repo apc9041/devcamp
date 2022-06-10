@@ -1,0 +1,61 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jun 09, 2022 at 05:22 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.5
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Database: `ecommerce`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `carcommerce`
+--
+
+CREATE TABLE `carcommerce` (
+  `id` int(3) NOT NULL,
+  `ProductName` varchar(30) NOT NULL,
+  `Photo` varchar(60) NOT NULL,
+  `StockLeft` varchar(30) NOT NULL,
+  `Category` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `carcommerce`
+--
+
+INSERT INTO `carcommerce` (`id`, `ProductName`, `Photo`, `StockLeft`, `Category`) VALUES
+(39, 'asd11', 'Screenshot 2022-06-03 153241.png', '1', 'asd11'),
+(44, 'asd22', 'Screenshot 2022-06-03 153459.png', '2', 'asd22'),
+(45, 'asd33', 'Screenshot 2022-06-03 153532.png', '3', 'asd33'),
+(46, 'test', '', '6', 'Toyota');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `carcommerce`
+--
+ALTER TABLE `carcommerce`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `carcommerce`
+--
+ALTER TABLE `carcommerce`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+COMMIT;

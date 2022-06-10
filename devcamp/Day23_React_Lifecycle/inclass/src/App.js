@@ -134,7 +134,6 @@ function myFunction() {
   document.getElementById("demo").innerHTML = text;
 }
 
-
 class App extends React.Component {
   constructor() {
     super();
@@ -194,7 +193,7 @@ componentWillUnmount() {
   //   <Form.Item name='input' label='input'>
   //     <Input type='password'></Input>
   //   </Form.Item>
-  //   </Form>);
+  //   </Form>;
 }
 
 render() {

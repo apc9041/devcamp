@@ -6,6 +6,7 @@ var cors = require('cors');
 const jwt = require('jsonwebtoken');
 
 
+
 //----------------------------------connection pool-----------------------------------------
 const pool  = mysql.createPool({
   connectionLimit : 10,
@@ -23,11 +24,7 @@ router.get('/', async function (req, res, next) {
   res.send(rows)
 });
 
-//----------------------------------get-------------------------------------------------------
-/* GET users listing. */
-// router.get('/', function (req, res, next) {
-//   res.send('respond with a resource');
-//   });
+
 
 
 
@@ -63,7 +60,7 @@ router.post('/', async function (req, res) {
   
 
 //----------------------------------jwt-------------------------------------------------------------
-  router.get('/mycart', async function (req, res) {
+  router.get('/mycart' , async function (req, res) {
     let token = req.headers.authorization;
     if (!token) {
       res.status(401).send('Unauthorized1');
@@ -87,5 +84,7 @@ router.post('/', async function (req, res) {
     }
    });
    
+
+
 
 module.exports = router;

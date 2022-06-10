@@ -1,59 +1,74 @@
-import React from 'react';
-import { Form, Input, Button } from 'antd';
-import axios from 'axios';
+import { Button, Form, Input, Space } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-const Login = function () {
-    const [form] = Form.useForm();
-    let navigate = useNavigate();
-    const onFinish = async (values) => {
-        console.log(values);
+export default function Login() {
+ const [form] = Form.useForm();
+ const navigate = useNavigate();
 
-        try {
-            const results = await axios.post('/api/auth/token', {
-                username: values.username,
-                password: values.password,
-            });
-            localStorage.setItem('token', results.data.token);
-            navigate('/Dashboard');
+ const onFinish = async (values) => {
+    try {
+        const result = await axios.post('/api/auth/token', {
+          username: values.username,
+          password: values.password,
+          
+        });
+        localStorage.setItem('token', result.data.token);
+        navigate('/stock')
+      } catch (e) {
+        form.setFields([
+          {
+            name: 'username',
+            errors: [e.response.data.error],
+          },
+        ]);
+        navigate('/dashboard')
+      }
+   
+ };
 
-        } catch (e) {
-            console.log(e);
-            form.setFields([{
-                name: 'username',
-                error: [e.response.data.error],
-            }]);
-        };
-    };
+ 
+ return (
+   <div
+     style={{ marginTop: '50px', display: 'flex', justifyContent: 'center' }}
+   >
+     <Space>
+       <Form form={form} onFinish={onFinish}>
+         <Form.Item
+           name="username"
+           label="Username"
+           labelCol={{ span: 8 }}
+           wrapperCol={{ span: 16 }}
+           rules={[
+             {
+               required: true,
+             },
+           ]}
+         >
+           <Input />
+         </Form.Item>
+        
 
-
-    return (
-        <center>
-            <Form form={form} onFinish={onFinish}>
-                <div className='BoxA'>
-                    <h1 style={{ color: 'white' }}>:: Login ::</h1><br />
-                    <Form.Item name='username'>
-                        <tr>
-                            <td style={{ width: '100px' }}><p style={{ color: 'white' }}> Username : </p></td>
-                            <td style={{ width: '200px' }}><Input /></td>
-                        </tr>
-                    </Form.Item>
-
-                    <Form.Item name='password'>
-                        <tr>
-                            <td style={{ width: '100px' }}><p style={{ color: 'white' }}> Password : </p></td>
-                            <td style={{ width: '200px' }}><Input type='password' /></td>
-                        </tr>
-
-                    </Form.Item>
-
-                    <Form.Item>
-                        <Button type='primary' htmlType='submit'>submit</Button>
-                    </Form.Item>
-                </div>
-            </Form>
-        </center>
-    )
+         <Form.Item
+           name="password"
+           label="Password"
+           labelCol={{ span: 8 }}
+           wrapperCol={{ span: 16 }}
+           rules={[
+             {
+               required: true,
+             },
+           ]}
+         >
+           <Input.Password />
+         </Form.Item>
+         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+           <Button type="primary" htmlType="submit">
+             Submit
+           </Button>
+         </Form.Item>
+       </Form>
+     </Space>
+   </div>
+ );
 }
-
-export default Login;

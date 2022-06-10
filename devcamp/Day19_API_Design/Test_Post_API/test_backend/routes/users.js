@@ -123,7 +123,7 @@ router.post('/users/add', async function (req, res, next) {
 
 // ------------------------Post company--------------------------------------------------------------
 
-router.post('/users/company', async (req, res) => {
+router.post('/users/company', async function (req, res) {
  
   const connection = await mysql.createConnection({
     host: 'localhost',

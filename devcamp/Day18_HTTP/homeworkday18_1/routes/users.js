@@ -18,10 +18,11 @@ router.get('/api/product/:id', function (req, res, next) {
   connection.connect();
 
   console.log('start query : ' + new Date().getTime());
-
+  
+  // const {id} = req.body
   connection.query(
 
-    `select * from homework18_1`,
+    `select * from homework18_1 where ${req.params.id}`,
 
     (err, rows, fileLoaderlds) => {
       if (err) throw err;

@@ -9,6 +9,7 @@ import EmployeeDetail from "./component/EmployeeDetail";
 import employeeList from './component/data';
 import Employee from './component/Employee';
 import Department from './component/Department';
+import MenuTest from './component/MenuTest';
 
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
 
          <Route path="department" element={<Department/>} />
          <Route path="employee/:department" element={<Employee />} />
+
+         
          <Route path="*" element={<NotMatch />} />
 
 

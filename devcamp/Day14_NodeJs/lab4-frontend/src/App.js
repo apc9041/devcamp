@@ -26,5 +26,6 @@ export default function App() {
      setData(result.data);
    });
  }, []);
+ console.log('data :',data);
  return <Table dataSource={data} columns={columns} pagination={false} />;
 }

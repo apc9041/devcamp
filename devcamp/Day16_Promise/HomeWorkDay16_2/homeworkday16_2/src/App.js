@@ -1,6 +1,6 @@
 import { Table } from 'antd';
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import './App.css';
 import React from 'react';
 
@@ -35,28 +35,6 @@ export default function App() {
 
 },[])
 
-//  const [data, setData] = useState([]);
-//  useEffect(() => {
-
-//   // router.get('/api/users', function (req, response, next) {
-//   axios.get("/api/users").then(function (response) {
-//     let rowDisplay = document.getElementById('rowDisplay');
-//     let textHtml = '';
-//     console.log(response.data.data);
-//     console.log(response.data.data[1].avatar);
-//     for (let i=0; i < response.data.data.length; i++) {
-//       let  images = "images/"
-//         let img = "<p><img src='" + response.data.data[i].avatar + "'></p>";
-  
-//         textHtml += "<td><p><span>" + response.data.data[i].first_name +"</span></p>"+"<p>" + response.data.data[i].email + img + "</p></td>";
-
-//     }
-//     rowDisplay.innerHTML = textHtml;
-//   });
-
-//  }, []);
-
-
  return (
   <div style={{textAlign: 'center'}}>
     <h1>Hello ReqRes users!</h1>
@@ -72,3 +50,30 @@ export default function App() {
 
 
 
+// export default function App() {
+//   const columns = [
+//     {
+//       title: 'first_name',
+//       dataIndex: 'first_name',
+//       key: 'first_name',
+//     },
+//     {
+//       title: 'email',
+//       dataIndex: 'email',
+//       key: 'email',
+//     },
+//     {
+//       title: 'avatarA',
+//       dataIndex: 'avatar',
+//       key: 'avatar',
+//     },
+//   ];
+//   const [data, setData] = useState([]);
+//   useEffect(() => {
+//     axios.get('/api/users').then((result) => {
+//       setData(result.data.data);
+//     });
+//   }, []);
+//   return <Table dataSource={data} columns={columns} pagination={false} />;
+//  }
+ 
