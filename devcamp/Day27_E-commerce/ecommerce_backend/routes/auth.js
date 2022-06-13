@@ -11,10 +11,15 @@ router.post('/token', async function (req, res) {
  const { username, password } = req.body; // รับ post json object
 
  const connection = await mysql.createConnection({
-   host: 'localhost',
-   user: 'root', 
-   database: 'day22', 
-   port: 3306, 
+  host: 'ls-e4732e412a61f59f6fa72b8da25d254a7c4ecbc1.ctkcjkxeem4c.ap-southeast-1.rds.amazonaws.com',
+  user: 'dbmasrteruser',
+  password: 'ws081081',
+  database: 'dbmaster',
+  port: 3306,
+  // host: 'localhost',
+  //  user: 'root', 
+  //  database: 'day22', 
+  //  port: 3306, 
  });
 
  const result = await connection.query(
@@ -53,6 +58,9 @@ router.post('/token', async function (req, res) {
  }
 
 });
+//----------------------------------------------------------------------------------------
+
+
 
 
 

@@ -10,7 +10,7 @@ export default function Profile() {
    const token = localStorage.getItem('token');
    if (token) {
      axios
-       .get('http://localhost:3000/api/users/mycart', {
+       .get('http://52.77.238.229:3000/api/users/mycart', {
          headers: {
            Authorization: `Bearer ${token}`, // JWT in Authorization header
          },

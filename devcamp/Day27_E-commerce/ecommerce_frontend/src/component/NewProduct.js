@@ -67,7 +67,7 @@ const NewProduct = () => {
     console.log('You added :', values.ProductName);
 
     const PostFunc = async () => {
-      await axios.post('http://localhost:3000/api/users', {
+      await axios.post('http://52.77.238.229:3000/api/users', {
         ProductName: values.ProductName,
         Photo: PhotoName,
         StockLeft: values.StockLeft,

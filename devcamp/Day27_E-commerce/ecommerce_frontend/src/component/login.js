@@ -9,7 +9,7 @@ export default function Login() {
   const onFinish = async (values) => {
     // call backend here
     try {
-      const result = await axios.post('http://localhost:3000/api/auth/token', {
+      const result = await axios.post('http://52.77.238.229:3000/api/auth/token', {
         username: values.username,
         password: values.password,
       });

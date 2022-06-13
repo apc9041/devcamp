@@ -16,7 +16,7 @@ const EditProduct = () => {
 
   const [data, setData] = useState([]);
   useEffect(() => {
-    axios.get('http://localhost:3000/api/users').then((result) => {
+    axios.get('http://52.77.238.229:3000/api/users').then((result) => {
       console.log(result.data);
       // console.log(result.data[window.location.href.substring(window.location.href.lastIndexOf('/') + 1)]);
       // console.log( result.data.id===2 );
@@ -30,7 +30,7 @@ const EditProduct = () => {
   const onFinish = async (values) => {
     console.log('values of form: ', values);
     // console.log('You added :', values.ProductName);
-    await axios.put(`http://localhost:3000/api/users/edit/${window.location.href.substring(window.location.href.lastIndexOf('/') + 1)}`, {
+    await axios.put(`http://52.77.238.229:3000/api/users/edit/${window.location.href.substring(window.location.href.lastIndexOf('/') + 1)}`, {
         ProductName: values.ProductName,
         Photo: PhotoName,
         StockLeft: values.StockLeft,

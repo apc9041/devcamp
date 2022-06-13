@@ -9,7 +9,8 @@ import ViewProduct from './component/ViewProduct';
 import NewProduct from './component/NewProduct';
 import MyTable from './component/ReduxFunc';
 import Login from './component/login';
-import Register from './component/register'
+import Register from './component/register';
+import Line_liff from './component/oauth2';
 
 
 
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login/>}/>
           <Route index element={<Login />} />
+          <Route path="/lineliff" element={<Line_liff />} />
           <Route path="/TableComp" element={<TableComp />} />
           <Route path="/Register" element={<Register />} />
           

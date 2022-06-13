@@ -1,0 +1,37 @@
+sudo apt-get update
+
+sudo apt-get upgrade
+
+
+sudo chmod 400 Downloads/codecamp-aws-key.pem
+
+sudo chmod 400 Downloads/
+
+
+ต่อเซิฟ
+
+ssh -i Downloads/codecamp-aws-key.pem ubuntu@52.77.238.229 //Server
+ssh -i Downloads/codecamp-aws-key.pem ubuntu@54.169.15.181  //API
+
+
+
+In server
+
+sudo chmod -R 777 /var/www/html
+คอมฯ ตัวเอง
+
+scp -i Downloads/key.pem -r Downloads/build/* ubuntu@52.77.238.229:/var/www/html
+scp -i Downloads/key.pem -r Downloads/build/* ubuntu@54.169.15.181:/var/www/Backend
+
+* Create static web directory : 
+sudo mkdir /var/www/Backend
+* Grant folder for upload static web : 
+sudo chmod -R 777 /var/www/Backend
+* Upload static web build file to remote server 
+scp -i Downloads/key.pem -r Downloads/ecommerce-backend/* ubuntu@54.169.15.181:/var/www/Backend
+
+sudo apt-get install nginx
+
+
+Mintler
+Databasemintler

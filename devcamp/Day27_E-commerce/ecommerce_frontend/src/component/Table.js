@@ -11,14 +11,15 @@ import { Table, Avatar } from 'antd';
 export default function TableComp() {
   let navigate = useNavigate();
    const [cart, setCart] = useState([]);
-  
+
+
    useEffect(() => {
      const token = localStorage.getItem('token');
      if (token) {
        axios
-         .get('http://localhost:3000/api/users/mycart', {
+         .get('http://52.77.238.229:3000/api/users/mycart', {
            headers: {
-             Authorization: `Bearer ${token}`, // JWT in Authorization header
+             Authorization: `Bearer ${token}`,// JWT in Authorization header
            },
          })
          .then((res) => {
@@ -28,11 +29,12 @@ export default function TableComp() {
            if (err.response.status === 401) {
              // token expired - remove and redirect to login
              localStorage.removeItem('token');
-             navigate('/login');
+            //  navigate('/login');
            }
          });
      } else {
-       navigate('/login');
+      //  navigate('/login');
+       
      }
    }, []);
 
@@ -61,7 +63,7 @@ export default function TableComp() {
          {/* <img src={`C:/DevCamp/devcamp/devcamp/Day27_E-commerce/ecommerce_backend/ecommerce_backend/public/upload-files/${record.Photo}`}/> */}
          <Avatar
               size={64}
-              src={`http://localhost:3000/upload-files/${record.Photo}`}
+              src={`http://52.77.238.229:3000/upload-files/${record.Photo}`}
             />
        </div> )
    },
@@ -98,7 +100,7 @@ export default function TableComp() {
         async () => {
           alert('Deleted');
           //  navigate(`${window.location.href}`);
-          await axios.delete(`http://localhost:3000/api/users/delete/${record.id}`);
+          await axios.delete(`http://52.77.238.229:3000/api/users/delete/${record.id}`);
           await navigate('/');
         }
         
@@ -113,7 +115,7 @@ export default function TableComp() {
 
  const [data, setData] = useState([]);
  useEffect(() => {
-  axios.get('http://localhost:3000/api/users').then((result) => {
+  axios.get('http://52.77.238.229:3000/api/users').then((result) => {
      setData(result.data);
    });
  }, []);

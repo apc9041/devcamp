@@ -9,7 +9,7 @@ import EmployeeDetail from "./component/EmployeeDetail";
 import employeeList from './component/data';
 import Employee from './component/Employee';
 import Department from './component/Department';
-import MenuTest from './component/MenuTest';
+// import MenuTest from './component/MenuTest';
 
 
 function App() {

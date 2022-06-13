@@ -1,0 +1,141 @@
+https://codelab.line.me/codelabs/liff/index.html#0
+
+https://twinsynergy.co.th/%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B3-liff-line-front-end-framework-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-reactjs-%E0%B9%81%E0%B8%A5%E0%B8%B0-ngrok/
+
+
+
+
+
+https://quickstart-liff-qsthta.stackblitz.io
+
+Endpoin : https://c250-2001-44c8-4556-ed79-90b-2b75-3a28-bded.ap.ngrok.io
+
+LIFF ID : 1657206783-A8xw5LxB
+
+
+Ngrok
+Apichart
+apc9041@gmail.com
+@Ws0810810049
+
+Your Authtoken : 2ANHWblHKkbYam2dRGY3U2njx3J_4UTyoWFk2pGJAqwJb8Xf7
+
+
+
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+// Initialize LIFF app
+await liff.init({ liffId: "YOUR-LIFF-ID" })
+
+// Try a LIFF function
+switch (liff.getOS()) {
+  case "android": body.style.backgroundColor = "#d1f5d3"; break
+  case "ios": body.style.backgroundColor = "#eeeeee"; break
+}
+
+<section id="profile">
+  <img id="pictureUrl" src="https://mokmoon.com/images/ic_liff.png">
+  <p id="userId"></p>
+  <p id="displayName"></p>
+  <p id="statusMessage"></p>
+  <p id="email"></p>
+</section>
+
+async function getUserProfile() {
+  const profile = await liff.getProfile()
+  pictureUrl.src = profile.pictureUrl
+  userId.innerHTML = "<b>userId:</b> " + profile.userId
+  statusMessage.innerHTML = "<b>statusMessage:</b> " + profile.statusMessage
+  displayName.innerHTML = "<b>displayName:</b> " + profile.displayName
+}
+
+async function main() {
+  // ...
+  getUserProfile()
+}
+
+async function getUserProfile() {
+  // ...
+  email.innerHTML = "<b>email:</b> " + liff.getDecodedIDToken().email
+}
+
+<section id="button">
+  <button id="btnLogIn">Log In</button>
+  <button id="btnLogOut">Log Out</button>
+</section>
+
+async function main() {
+  // ...
+  if (!liff.isInClient()) {
+    btnLogIn.style.display = "block"
+    btnLogOut.style.display = "block"
+  }
+}
+
+btnLogIn.onclick = () => {
+  liff.login()
+}
+
+btnLogOut.onclick = () => {
+  liff.logout()
+  window.location.reload()
+}
+
+async function main() {
+  // ...
+  if (!liff.isInClient()) {
+    if (liff.isLoggedIn()) {
+      btnLogIn.style.display = "none"
+      btnLogOut.style.display = "block"
+    } else {
+      btnLogIn.style.display = "block"
+      btnLogOut.style.display = "none"
+    }
+  }
+}
+
+async function main() {
+  // ...
+  if (!liff.isInClient()) {
+    if (liff.isLoggedIn()) {
+      btnLogIn.style.display = "none"
+      btnLogOut.style.display = "block"
+      getUserProfile()
+    } else {
+      btnLogIn.style.display = "block"
+      btnLogOut.style.display = "none"
+    }
+  } else {
+    getUserProfile()
+  }
+}
+---------------------------------------------------------------------------------------------------------
+
+หลังจากที่คุณมี LIFF app แล้ว คราวนี้เราจะมาลงมือโค้ดกัน โดยการจะใช้งานคำสั่งต่างๆภายใน LIFF เราจะต้องเริ่มจากการ initialize ตัว LIFF app ขึ้นมาก่อน
+
+Initial LIFF app
+ไปที่ไฟล์ index.html ใน StackBlitz แล้ว Uncomment ตัว LIFF SDK ใน <head>
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+ไปที่ไฟล์ index.js แล้วเพิ่มคำสั่ง initialize ตัว LIFF app ด้วย LIFF ID ที่คุณได้จากขั้นตอนที่ 4 ในฟังก์ชัน main()
+// Initialize LIFF app
+await liff.init({ liffId: "YOUR-LIFF-ID" })
+
+ทดลองเรียกใช้คำสั่งใน LIFF
+เพื่อให้มั่นใจว่าคุณสามารถเรียกใช้งานฟังก์ชันต่างๆใน LIFF app ได้แล้ว ดังนั้น ให้เพิ่มโค้ดชุดนี้ลงไป หลังจากการ initialize ตัว LIFF app เพื่อตรวจสอบว่า LIFF app ของเราสามารถแยก OS ที่เปิดใช้งานได้
+
+// Try a LIFF function
+switch (liff.getOS()) {
+  case "android": body.style.backgroundColor = "#d1f5d3"; break
+  case "ios": body.style.backgroundColor = "#eeeeee"; break
+}
+Note: ค่าที่ได้จาก liff.getOS() สามารถเป็นได้ทั้ง android, ios และ web
+
+ผลลัพธ์
+วิธีการเปิด LIFF app ให้เราเอา LIFF URL ที่ได้จากข้อ 4 ซึ่งมีลักษณะแบบนี้ https://liff.line.me/YOUR-LIFF-ID
+
+โพส LIFF URL ลงในห้องแชทบน LINE(สมาร์ทโฟน) จากนั้นก็คลิกลิงค์ได้เลย
+จะพบหน้า consent ของ LINE ก็ให้กด Allow ไป
+จะเห็นผลลัพธ์ที่แยกตาม OS ดังภาพ
+
+
+Caution: การแก้ไขไฟล์ต่างๆใน StackBlitz จะต้องกดบันทึกทุกครั้งก่อนที่คุณจะเลิกใช้งาน หรือ refresh หน้า มิเช่นนั้นข้อมูลต่างๆจะกลับไปเป็นเหมือนก่อนแก้ไข

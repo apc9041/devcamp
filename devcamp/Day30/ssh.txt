@@ -1,12 +1,12 @@
-“ssh -i /xxxx/codecamp-aws-key ubuntu@13.229.46.193”
+“ssh -i key.pem ubuntu@54.169.15.181”
 “sudo chmod 400 sudo chmod 400 /xxxxx/codecamp-aws-key.pem”
 
-
+/c/DevCamp/devcamp/devcamp/Day30/
 
 
 
 Files tranfer
-$ scp -i /c/Users/ASUS/Downloads/key.pem -r /c/Users/ASUS/Downloads/build/* ubuntu@54.169.15.181:/var/www/html
+$ scp -i /c/DevCamp/devcamp/devcamp/Day32_Docker/key.pem -r /c/DevCamp/devcamp/devcamp/Day32_Docker/build/* ubuntu@54.169.15.181:/var/www/html
 
 Login Server
 $ ssh -i key.pem ubuntu@54.169.15.181

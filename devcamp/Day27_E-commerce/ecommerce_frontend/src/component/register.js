@@ -9,7 +9,7 @@ export default function Register() {
 
     console.log('values of form: ', values);
     const PostFunc = async () => {
-      await axios.post('http://localhost:3000/api/users/register', {
+      await axios.post('http://52.77.238.229:3000/api/users/register', {
         username: values.username,
         password: values.password,
         firstname: values.firstname,

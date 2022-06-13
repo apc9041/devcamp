@@ -9,7 +9,7 @@ import { UploadOutlined } from '@ant-design/icons';
 const MyUpload = ({ setPhotoName }) => {
   const props = {
     name: 'Photo',
-    action: 'http://localhost:3000/api/users/upload',
+    action: 'http://52.77.238.229:3000/api/users/upload',
     headers: {
       authorization: 'authorization-text',
     },
