@@ -23,8 +23,8 @@ function App() {
         {/* <MyTable/> */}
       {/* <h1 style={{color:'white'}}>Car Commerce</h1> */}
       <Routes>
-        <Route path="/" element={<Login/>}/>
-          <Route index element={<Login />} />
+       
+          <Route index element={<TableComp />} />
           <Route path="/lineliff" element={<Line_liff />} />
           <Route path="/TableComp" element={<TableComp />} />
           <Route path="/Register" element={<Register />} />

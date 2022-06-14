@@ -4,7 +4,7 @@ import './style.scss';
 import './styleButton.css';
 import './styleButton2.css';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Table, Avatar } from 'antd';
 
 
@@ -33,7 +33,7 @@ export default function TableComp() {
            }
          });
      } else {
-      //  navigate('/login');
+       navigate('/login');
        
      }
    }, []);
@@ -88,10 +88,10 @@ export default function TableComp() {
     dataIndex: 'Action',
     render: (text, record) => (
      <div>
-       <a href={`/EditProduct/${record.id}`}>
+       <Link to={`/EditProduct/${record.id}`}>
        <button class="button-71" onClick={()=> console.log(record.id)}>
-       {"Edit"}
-     </button></a>
+       Edit
+     </button></Link>
      &nbsp;
 
      <button class="button-71" onClick={
@@ -101,7 +101,7 @@ export default function TableComp() {
           alert('Deleted');
           //  navigate(`${window.location.href}`);
           await axios.delete(`http://52.77.238.229:3000/api/users/delete/${record.id}`);
-          await navigate('/');
+          setIsDelete(!isDelete);
         }
         
       }>
@@ -114,18 +114,20 @@ export default function TableComp() {
 
 
  const [data, setData] = useState([]);
+ const [isDelete, setIsDelete] = useState(true);
+
  useEffect(() => {
   axios.get('http://52.77.238.229:3000/api/users').then((result) => {
      setData(result.data);
    });
- }, []);
+ }, [isDelete]);
  return <div> < Table dataSource={data} columns={columns} pagination={false} />;
  <center>
 
-       <a href={`/NewProduct`}>
+       <Link to={`/NewProduct`}>
        <button class="button-71" onClick={()=> console.log()}>
        {"Create New Product"}
-     </button></a>
+     </button></Link>
      
      &nbsp;
      

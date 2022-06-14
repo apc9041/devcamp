@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { Button, Form, Input, Space, Layout, InputNumber, Inputupload } from 'antd';
 import axios from 'axios';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate, Link} from 'react-router-dom';
 import MyUpload from './UploadButton'
 
 
@@ -92,10 +92,10 @@ const NewProduct = () => {
   return (<>
     <center>
       <div style={{ width: '800px', textAlign: 'right', padding: '10px 0px 10px 0px' }}>
-        <a href={`/`}>
+        <Link to={`/`}>
           <button class="button-71">
             {"Dash Board"}
-          </button></a>
+          </button></Link>
       </div></center>
     <Form form={form} onFinish={onFinish}
 
